@@ -26,6 +26,3 @@ with open('output.txt', 'w') as f:
     for line in data:
         f.write(line)
         f.write('\n')
-        
-
-        
