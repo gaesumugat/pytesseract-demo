@@ -1,11 +1,19 @@
 import cv2
 import pytesseract
+import os
+
+imgs_path = []
+
+def getImgs():
+    for x in os.listdir('./input'):
+        if x.endswith(".png"):
+            imgs_path.append(x)
+    print(imgs_path)
+getImgs()
 
 def ocr(img):
     text = pytesseract.image_to_string(img)
     return text
-
-img = cv2.imread('lorem.png')
 
 def get_grayscale(img):
     return cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -16,15 +24,15 @@ def remove_noise(img):
 def thresholding(img):
     return cv2.threshold(img, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)[1]
 
-img = get_grayscale(img)
-img = thresholding(img)
-img = remove_noise(img)
+def processImg(img):
+    readImg = cv2.imread(img)
+    readImg = get_grayscale(readImg)
+    readImg = thresholding(readImg)
+    readImg = remove_noise(readImg)
+    return ocr(img).split('\n')
 
-data = ocr(img).split('\n')
-
-with open('output.txt', 'w') as f:
-    for line in data:
-        f.write(line)
-        f.write('\n')
-        
-print('done')
+for img in imgs_path:
+    with open("./output/"+'{}.txt'.format(img.rstrip('.png')), 'w') as f:
+        for line in processImg("./input/"+img):
+            f.write(line)
+            f.write('\n')
