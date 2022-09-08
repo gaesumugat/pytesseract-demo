@@ -5,14 +5,14 @@ import os
 imgs_path = []
 
 def getImgs():
-    for x in os.listdir('./input'):
+    for x in os.listdir('./input/handwritten'):
         if x.endswith(".png"):
             imgs_path.append(x)
     print(imgs_path)
 getImgs()
 
 def ocr(img):
-    text = pytesseract.image_to_string(img)
+    text = pytesseract.image_to_string(img, config='--oem 3')
     return text
 
 def get_grayscale(img):
@@ -31,8 +31,16 @@ def processImg(img):
     readImg = remove_noise(readImg)
     return ocr(img).split('\n')
 
+# image = cv2.imread("./input/handwriting.png")
+# image = get_grayscale(image)
+# image = thresholding(image)
+# image = remove_noise(image)
+# print(ocr(image))
+# cv2.imshow('Result', image)
+# cv2.waitKey(0)
+
 for img in imgs_path:
-    with open("./output/"+'{}.txt'.format(img.rstrip('.png')), 'w') as f:
+    with open("./output/handwritten"+'{}.txt'.format(img.rstrip('.png')), 'w') as f:
         for line in processImg("./input/"+img):
             f.write(line)
             f.write('\n')

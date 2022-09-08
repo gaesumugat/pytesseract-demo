@@ -1,6 +1,5 @@
 import cv2
 import pytesseract
-import re
 
 def ocr(img):
     text = pytesseract.image_to_string(img)

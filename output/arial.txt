@@ -1,7 +1,0 @@
-This is a text using the font Arial at 12 font size, the text is also BOLD.
-The quick brown fox jumped over the lazy dog
-The quick brown fox jumped over the lazy dog
-The quick brown fox jumped over the lazy dog
-The quick brown fox jumped over the lazy dog
-The quick brown fox jumped over the lazy dog
-

@@ -1,0 +1,14 @@
+Date collected/Plot [Species [Sex Weight
+1/9/78 1|DM M 40
+
+1/9/78 1|DM F 36
+
+1/9/78 1|DS F 135
+1/20/78 1|DM F 39
+1/20/78 2/DM M 43
+1/20/78 2/DS F 144
+3/13/78 2/DM F 51
+3/13/78 2/DM F 44
+3/13/78 2/DS F 146
+
+
