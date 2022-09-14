@@ -19,9 +19,16 @@ def processImg(img):
     readImg = get_grayscale(readImg)
     readImg = thresholding(readImg)
     readImg = remove_noise(readImg)
-    return [x.replace(' ','') for x in ocr(img).split('\n') if x != '']
+    scale_percent = 40# percent of original size
+    width = int(readImg.shape[1] * scale_percent / 100)
+    height = int(readImg.shape[0] * scale_percent / 100)
+    dim = (width, height)
+    image = cv2.resize(readImg, dim, interpolation = cv2.INTER_AREA)
+    return image
 
-for item in processImg("./input/multiplication.png"):
-    item = item.replace('=', '')
-    item = item.replace('x', '*')
-    print(str(eval(item)))
+
+img = 'input/phone_texts/arial_phone.jpg'
+text = ocr(processImg(img))
+print(text)
+cv2.imshow('Output', processImg(img))
+cv2.waitKey()

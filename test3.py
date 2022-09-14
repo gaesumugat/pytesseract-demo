@@ -41,6 +41,7 @@ for c in cnts:
 text = pytesseract.image_to_data(result, lang='eng',config='--psm 4 --oem 3', output_type=Output.DATAFRAME)
 boxes = pytesseract.image_to_data(result, config='--psm 4 --oem 3')
 row = []
+
 for i in text['text']:
     if str(i) != 'nan':
         row.append(i)
